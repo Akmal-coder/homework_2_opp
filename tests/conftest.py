@@ -58,3 +58,39 @@ def category_tv(fourth_product):
         ),
         products=[fourth_product],
     )
+
+
+@pytest.fixture
+def sample_product():
+    """Фикстура для создания тестового продукта"""
+    return Product("iPhone", "Смартфон", 100000, 5)
+
+
+@pytest.fixture
+def sample_product_2():
+    """Фикстура для создания второго тестового продукта"""
+    return Product("Samsung", "Смартфон", 80000, 3)
+
+
+@pytest.fixture
+def sample_products(sample_product, sample_product_2):
+    """Фикстура для списка продуктов"""
+    return [sample_product, sample_product_2]
+
+
+@pytest.fixture
+def empty_category():
+    """Фикстура для пустой категории"""
+    return Category("Смартфоны", "Мобильные устройства")
+
+
+@pytest.fixture
+def category_with_products(sample_products):
+    """Фикстура для категории с продуктами"""
+    return Category("Смартфоны", "Мобильные устройства", sample_products)
+
+
+@pytest.fixture
+def category_iterator(category_with_products):
+    """Фикстура для итератора категории"""
+    return iter(category_with_products)
