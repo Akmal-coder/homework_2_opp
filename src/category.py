@@ -6,7 +6,6 @@ class Category:
 
     name: str
     description: str
-    products: list
     category_count = 0
     product_count = 0
 
@@ -22,9 +21,12 @@ class Category:
         return f"{self.name}, количество продуктов: {total_quantity} шт."
 
     def add_product(self, product):
-        if isinstance(product, Product):
-            self.__products.append(product)
-            Category.product_count += 1
+        if not isinstance(product, Product):
+            raise TypeError(
+                "Можно добавлять только объекты Product или его наследников"
+            )
+        self.__products.append(product)
+        Category.product_count += 1
 
     def __iter__(self):
         """Делает категорию итерируемой через генератор"""
