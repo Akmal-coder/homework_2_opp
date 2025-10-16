@@ -1,3 +1,9 @@
+import pytest
+
+from src.category import Category
+from src.product import LawnGrass, Smartphone
+
+
 def test_product_init(first_product, second_product, third_product, fourth_product):
     assert first_product.name == "Samsung Galaxy S23 Ultra"
     assert first_product.description == "256GB, Серый цвет, 200MP камера"
@@ -50,3 +56,30 @@ def test_sample_products_quantities(sample_products):
     """Тест количеств продуктов в фикстуре"""
     assert sample_products[0].quantity == 5  # iPhone
     assert sample_products[1].quantity == 3
+
+
+def test_add_same_products():
+    phone1 = Smartphone("Phone1", "Desc", 100, 2, "High", "X", 128, "Black")
+    phone2 = Smartphone("Phone2", "Desc", 200, 3, "High", "Y", 256, "White")
+    result = phone1 + phone2
+    assert result == (100 * 2 + 200 * 3)
+
+
+def test_add_different_products():
+    phone = Smartphone("Phone", "Desc", 100, 2, "High", "X", 128, "Black")
+    grass = LawnGrass("Grass", "Desc", 50, 5, "Russia", "7 days", "Green")
+    with pytest.raises(TypeError):
+        phone + grass
+
+
+def test_add_product_to_category():
+    category = Category("Test", "Test desc")
+    phone = Smartphone("Phone", "Desc", 100, 2, "High", "X", 128, "Black")
+    category.add_product(phone)
+    assert len(category.products_in_list) == 1
+
+
+def test_add_wrong_type_to_category():
+    category = Category("Test", "Test desc")
+    with pytest.raises(TypeError):
+        category.add_product("Not a product")
