@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fd7fadd-b164-438e-8f40-f7342abba22a" name="Changes" comment="homework_2_oop 16.1 done">
-      <change afterPath="$PROJECT_DIR$/src/16.2_main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/countable.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/order.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_order.py" afterDir="false" />
+    <list default="true" id="5fd7fadd-b164-438e-8f40-f7342abba22a" name="Changes" comment="homework_2_oop 16.2 done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/category.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/category.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/product.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_category.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_category.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_product.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760634128966</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="homework_2_oop 16.2 done">
+      <option name="closed" value="true" />
+      <created>1761143979697</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1761143979697</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -290,6 +290,7 @@
     <MESSAGE value="homework_2_oop" />
     <MESSAGE value="homework_2_oop done" />
     <MESSAGE value="homework_2_oop 16.1 done" />
-    <option name="LAST_COMMIT_MESSAGE" value="homework_2_oop 16.1 done" />
+    <MESSAGE value="homework_2_oop 16.2 done" />
+    <option name="LAST_COMMIT_MESSAGE" value="homework_2_oop 16.2 done" />
   </component>
 </project>
