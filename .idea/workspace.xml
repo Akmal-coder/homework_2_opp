@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fd7fadd-b164-438e-8f40-f7342abba22a" name="Changes" comment="homework_2_oop 16.2 done">
-      <change afterPath="$PROJECT_DIR$/src/17.1_main.py" afterDir="false" />
+    <list default="true" id="5fd7fadd-b164-438e-8f40-f7342abba22a" name="Changes" comment="homework17.1_oop done">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/category.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/category.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/order.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/product.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_category.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_category.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_product.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_product.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +96,7 @@
   }
 }]]></component>
   <component name="RunManager" selected="Python.17.1_main">
-    <configuration name="14.2_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="16.2_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="homework_2_oop" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,7 +109,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/14.2_main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/16.2_main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -215,10 +209,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.17.1_main" />
+        <item itemvalue="Python.16.2_main" />
         <item itemvalue="Python.utils" />
         <item itemvalue="Python.product" />
         <item itemvalue="Python.category" />
-        <item itemvalue="Python.14.2_main" />
       </list>
     </recent_temporary>
   </component>
@@ -309,7 +303,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761150459708</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="homework17.1_oop done">
+      <option name="closed" value="true" />
+      <created>1761578156576</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1761578156576</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,6 +330,7 @@
     <MESSAGE value="homework_2_oop done" />
     <MESSAGE value="homework_2_oop 16.1 done" />
     <MESSAGE value="homework_2_oop 16.2 done" />
-    <option name="LAST_COMMIT_MESSAGE" value="homework_2_oop 16.2 done" />
+    <MESSAGE value="homework17.1_oop done" />
+    <option name="LAST_COMMIT_MESSAGE" value="homework17.1_oop done" />
   </component>
 </project>
