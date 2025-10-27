@@ -24,6 +24,9 @@ class BaseProduct(ABC):
     """Абстрактный базовый класс для всех продуктов"""
 
     def __init__(self, name, description, price, quantity):
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+
         self.name = name
         self.description = description
         self.__price = price  # Приватный атрибут
