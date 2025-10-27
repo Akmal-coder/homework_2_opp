@@ -46,4 +46,4 @@ class Order(Countable):
                 f"{item['product'].name} - {item['quantity']} шт. = {item['total_cost']} руб."
             )
 
-        return f"Заказ:\n" + "\n".join(items) + f"\nИтого: {self.total_cost} руб."
+        return "Заказ:\n" + "\n".join(items) + f"\nИтого: {self.total_cost} руб."
