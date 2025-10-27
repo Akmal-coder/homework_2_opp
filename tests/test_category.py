@@ -1,4 +1,8 @@
+from abc import ABC
+
 from src.category import Category
+from src.order import Countable
+from src.product import Product
 
 
 def test_category_init(category, first_product, second_product, third_product):
@@ -46,12 +50,9 @@ def test_category_iterator(category_iterator):
 def test_category_iter_empty(category):
     """Тест итерации по пустой категории"""
     category = Category("Пустая категория", "Описание")
-
-    # Должен работать цикл for без ошибок
     products = []
     for product in category:
         products.append(product)
-
     assert products == []
     assert len(products) == 0
 
@@ -90,15 +91,12 @@ def test_add_multiple_products_with_fixtures(sample_product, sample_product_2):
 
 def test_category_inherits_countable():
     """Тест, что Category наследует абстрактный класс Countable"""
-    from src.order import Countable
-
     assert issubclass(Category, Countable)
 
 
 def test_category_has_total_quantity(category):
     """Тест, что Category имеет свойство total_quantity от Countable"""
     assert hasattr(category, "total_quantity")
-    # 5 (Samsung) + 8 (iPhone) + 14 (Xiaomi) = 27
     assert category.total_quantity == 27
 
 
@@ -110,11 +108,7 @@ def test_category_total_quantity_empty():
 
 def test_category_implements_countable_abstract_methods():
     """Тест, что Category реализует все абстрактные методы Countable"""
-    from abc import ABC
-
     assert issubclass(Category, ABC)
-
-    # Проверяем, что есть обязательные методы
     category = Category("Тест", "Описание")
     assert hasattr(category, "add_product")
     assert hasattr(category, "total_quantity")
@@ -124,13 +118,9 @@ def test_category_implements_countable_abstract_methods():
 def test_category_countable_interface(first_product):
     """Тест интерфейса Countable в Category"""
     category = Category("Тест", "Описание")
-
-    # Проверяем добавление продукта
     category.add_product(first_product)
     assert len(category.products_in_list) == 1
-    assert category.total_quantity == 5  # first_product.quantity = 5
-
-    # Проверяем обновление total_quantity после добавления
+    assert category.total_quantity == 5
     from src.product import Product
 
     another_product = Product("Другой", "Описание", 100, 3)
@@ -141,19 +131,31 @@ def test_category_countable_interface(first_product):
 def test_category_countable_with_multiple_products(sample_products):
     """Тест Countable с несколькими продуктами из фикстуры"""
     category = Category("Тест", "Описание", sample_products)
-
-    # sample_products: iPhone (quantity=5) + Samsung (quantity=3)
     assert category.total_quantity == 8
 
 
 def test_category_countable_after_removal(first_product, second_product):
     """Тест обновления total_quantity (если бы было удаление)"""
     category = Category("Тест", "Описание", [first_product, second_product])
-
-    # first_product.quantity = 5, second_product.quantity = 8
     initial_total = category.total_quantity
     assert initial_total == 13
-
-    # Симулируем изменение quantity продукта
     first_product.quantity = 2
     assert category.total_quantity == 10  #
+
+
+def test_middle_price_with_products():
+    product1 = Product("Товар 1", "Описание 1", 100.0, 5)
+    product2 = Product("Товар 2", "Описание 2", 200.0, 3)
+    category = Category("Тестовая", "Категория для теста", [product1, product2])
+    assert category.middle_price() == 150.0
+
+
+def test_middle_price_empty_category():
+    category = Category("Пустая", "Категория без товаров", [])
+    assert category.middle_price() == 0
+
+
+def test_middle_price_single_product():
+    product = Product("Один товар", "Описание", 150.0, 1)
+    category = Category("Один товар", "Категория с одним товаром", [product])
+    assert category.middle_price() == 150.0

@@ -1,24 +1,5 @@
-from abc import ABC, abstractmethod
-
 from src.order import Countable
 from src.product import Product
-
-
-class Category(Countable):
-    """Абстрактный класс для объектов, которые могут содержать продукты"""
-
-    @abstractmethod
-    def __init__(self):
-        pass  # Не инициализируем атрибуты здесь
-
-    @abstractmethod
-    def add_product(self, product):
-        pass
-
-    @property
-    @abstractmethod
-    def total_quantity(self):
-        pass
 
 
 class Category(Countable):
@@ -30,7 +11,7 @@ class Category(Countable):
     product_count = 0
 
     def __init__(self, name, description, products=None):
-        super().__init__()  # Инициализация абстрактного класса
+        super().__init__()
         self.name = name
         self.description = description
         self.__products = products if products else []
@@ -50,13 +31,11 @@ class Category(Countable):
         Category.product_count += 1
 
     def __iter__(self):
-        """Делает категорию итерируемой через генератор"""
         for product in self.products_in_list:
             yield product
 
     @property
     def products(self):
-        """Property для строкового представления продуктов"""
         products_str = ""
         for product in self.__products:
             products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
@@ -64,10 +43,15 @@ class Category(Countable):
 
     @property
     def products_in_list(self):
-        """Property для доступа к списку продуктов"""
         return self.__products
 
     @property
     def total_quantity(self):
-        """Общее количество товаров в категории"""
         return sum(product.quantity for product in self.__products)
+
+    def middle_price(self):
+        try:
+            total_price = sum(product.price for product in self.__products)
+            return total_price / len(self.__products)
+        except ZeroDivisionError:
+            return 0

@@ -1,7 +1,8 @@
 import pytest
 
 from src.category import Category
-from src.product import LawnGrass, Smartphone
+from src.order import Countable, Order
+from src.product import BaseProduct, LawnGrass, Product, Smartphone
 
 
 def test_product_init(first_product, second_product, third_product, fourth_product):
@@ -87,16 +88,12 @@ def test_add_wrong_type_to_category():
 
 def test_base_product_abstract():
     """Тест, что BaseProduct является абстрактным классом"""
-    from src.product import BaseProduct
-
     with pytest.raises(TypeError):
         BaseProduct("Test", "Desc", 100, 5)
 
 
 def test_repr_mixin_logging(capsys):
     """Тест, что миксин логирует создание объектов"""
-    from src.product import Product
-
     product = Product("Test", "Desc", 100, 5)
     captured = capsys.readouterr()
     assert "Создан объект Product" in captured.out
@@ -105,8 +102,6 @@ def test_repr_mixin_logging(capsys):
 
 def test_order_creation(first_product):
     """Тест создания заказа"""
-    from src.order import Order
-
     order = Order(first_product, 2)
     assert order.total_quantity == 2
     assert order.total_cost == 180000.0 * 2
@@ -114,8 +109,6 @@ def test_order_creation(first_product):
 
 def test_order_add_product(first_product):
     """Тест добавления продукта в заказ"""
-    from src.order import Order
-
     order = Order()
     order.add_product(first_product, 3)
     assert order.total_quantity == 3
@@ -134,17 +127,12 @@ def test_order_str(first_product):
 
 def test_countable_abstract():
     """Тест, что Countable является абстрактным классом"""
-    from src.order import Countable
-
     with pytest.raises(TypeError):
         Countable()
 
 
 def test_category_inherits_countable():
     """Тест, что Category наследует Countable"""
-    from src.category import Category
-    from src.order import Countable
-
     assert issubclass(Category, Countable)
 
 
@@ -169,10 +157,7 @@ def test_product_inherits_base_product_and_repr_mixin():
 
 def test_product_mro_correct():
     """Тест правильного порядка разрешения методов (MRO)"""
-    from src.product import Product
-
     mro = Product.__mro__
-    # Проверяем порядок: Product -> ReprMixin -> BaseProduct -> ABC -> object
     assert mro[0] == Product
     assert mro[1].__name__ == "ReprMixin"
     assert mro[2].__name__ == "BaseProduct"
@@ -180,8 +165,6 @@ def test_product_mro_correct():
 
 def test_smartphone_inheritance():
     """Тест наследования Smartphone"""
-    from src.product import Product, Smartphone
-
     assert issubclass(Smartphone, Product)
     smartphone = Smartphone("Phone", "Desc", 100, 2, "High", "X", "128GB", "Black")
     assert isinstance(smartphone, Product)
@@ -189,8 +172,6 @@ def test_smartphone_inheritance():
 
 def test_lawn_grass_inheritance():
     """Тест наследования LawnGrass"""
-    from src.product import LawnGrass, Product
-
     assert issubclass(LawnGrass, Product)
     grass = LawnGrass("Grass", "Desc", 50, 5, "Russia", "7 days", "Green")
     assert isinstance(grass, Product)
@@ -206,8 +187,6 @@ def test_repr_mixin_representation(first_product):
 
 def test_product_new_product_method():
     """Тест классового метода new_product"""
-    from src.product import Product
-
     product_data = {
         "name": "Test Product",
         "description": "Test Description",
@@ -242,8 +221,6 @@ def test_product_price_setter_increase_requires_confirmation(first_product):
 
 def test_order_with_smartphone(sample_smartphone):
     """Тест заказа со смартфоном"""
-    from src.order import Order
-
     order = Order(sample_smartphone, 1)
     assert order.total_cost == 150000.0  # sample_smartphone.price
     assert order.total_quantity == 1
@@ -260,8 +237,6 @@ def test_order_with_lawn_grass(sample_lawn_grass):
 
 def test_order_mixed_products(sample_smartphone, sample_lawn_grass):
     """Тест заказа с разными типами продуктов"""
-    from src.order import Order
-
     order = Order()
     order.add_product(sample_smartphone, 2)
     order.add_product(sample_lawn_grass, 5)
@@ -271,10 +246,6 @@ def test_order_mixed_products(sample_smartphone, sample_lawn_grass):
 
 def test_countable_interface_consistency():
     """Тест согласованности Countable интерфейса в Category и Order"""
-    from src.category import Category
-    from src.order import Order
-
-    # Оба класса должны иметь одинаковый интерфейс
     category_methods = {
         method for method in dir(Category) if not method.startswith("_")
     }
@@ -287,12 +258,38 @@ def test_countable_interface_consistency():
 
 def test_abstract_base_product_methods():
     """Тест, что BaseProduct требует реализации абстрактных методов"""
-    from abc import ABCMeta
-
-    from src.product import BaseProduct
-
-    # Проверяем, что BaseProduct действительно абстрактный
     assert hasattr(BaseProduct, "__abstractmethods__")
     abstract_methods = BaseProduct.__abstractmethods__
     expected_methods = {"__str__", "__add__", "new_product"}
     assert expected_methods.issubset(abstract_methods)
+
+
+def test_product_zero_quantity():
+    with pytest.raises(
+        ValueError, match="Товар с нулевым количеством не может быть добавлен"
+    ):
+        Product("Телефон", "Хороший", 50000.0, 0)
+
+
+def test_smartphone_zero_quantity():
+    with pytest.raises(
+        ValueError, match="Товар с нулевым количеством не может быть добавлен"
+    ):
+        Smartphone("iPhone", "Новый", 100000.0, 0, "Высокая", "15", "256GB", "Black")
+
+
+def test_lawn_grass_zero_quantity():
+    with pytest.raises(
+        ValueError, match="Товар с нулевым количеством не может быть добавлен"
+    ):
+        LawnGrass("Трава", "Зеленая", 1000.0, 0, "Россия", "30 дней", "Зеленый")
+
+
+def test_product_positive_quantity():
+    product = Product("Телефон", "Хороший", 50000.0, 5)
+    assert product.quantity == 5
+
+
+def test_product_negative_quantity():
+    product = Product("Товар", "Описание", 1000.0, -1)
+    assert product.quantity == -1

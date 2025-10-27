@@ -21,6 +21,9 @@ create_objects_from_json - Функция дял создания объекто
 - isinstance
 - super 
 - add
+- try
+- except
+
 
 ## Добавлен абстрактный класс
 - BaseProduct(родительский класс для продуктов)
